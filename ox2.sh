@@ -66,24 +66,34 @@ for package in ${platform_packages[@]}; do
   prefixed_platform_packages="${prefixed_platform_packages} ox2:${package}"
 done
 
-
-add_platform() {
-  echo "Adding ox2 platform..."
-  # Link all platfomr packages first to avoid package dependency errors in console
+link_platform() {
+  echo "Linking ox2 platform..."
   for package in ${platform_packages[@]}; do
     link_package ${package}
   done
+}
+
+unlink_platform() {
+  echo "Unlinking ox2 platform..."
+  for package in ${platform_packages[@]}; do
+    unlink_package ${package}
+  done
+}
+
+add_platform() {
+  # Link all platfomr packages first to avoid package dependency errors in console
+  link_platform
+  echo "Adding ox2 platform..."
   meteor add ${prefixed_platform_packages}
 }
 
 remove_platform() {
   echo "Removing ox2 platform..."
-  # Remove all meteor packages first to avoid package dependency issues
+  # Remove all meteor packages first to avoid packages not being removed due to dependency issues
   meteor remove ${prefixed_platform_packages}
-  for package in ${platform_packages[@]}; do
-    unlink_package ${package}
-  done
+  unlink_platform
 }
+
 
 #
 #     Commands
@@ -101,6 +111,10 @@ elif [ "$1" = "platform-add" ] ; then
   add_platform
 elif [ "$1" = "platform-remove" ] ; then
   remove_platform
+elif [ "$1" = "platform-link" ] ; then
+  link_platform
+elif [ "$1" = "platform-unlink" ] ; then
+  unlink_platform
 else
   echo "Use: ox2 <command>"
   echo "Command list:"
