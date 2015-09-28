@@ -124,4 +124,6 @@ else
   echo " * unlink <packagename> - to unlink local ox2 package to your project folder"
   echo " * platform-add - to add the ox2 platform"
   echo " * platform-remove - to remove the ox2 platform"
+  echo " * platform-link - to link the ox2 platform packages to your project folder"
+  echo " * platform-unlink - to unlink the ox2 platform packages to your project folder"
 fi
