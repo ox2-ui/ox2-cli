@@ -59,7 +59,7 @@ remove_package() {
 #
 
 # ox2 platform package name list
-platform_packages=( detective helpers normalize font-roboto font-roboto-condensed typography icons-spark colors layout buttons parts scroller panels modals forms tabs datetime-picker banner sortable text-display google-maps filesaver loader log-helpers )
+platform_packages=( detective helpers log-helpers normalize font-roboto font-roboto-condensed typography colors layout buttons parts scroller panels modals forms tabs datetime-picker banner sortable text-display google-maps filesaver loader )
 
 # ox2 platform package name list prefixed with organization
 for package in ${platform_packages[@]}; do
